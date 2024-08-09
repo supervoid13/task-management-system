@@ -15,3 +15,6 @@ git clone https://github.com/supervoid13/task-management-system.git
 ```sh
 docker compose up
 ```
+### OpenAPI Specification
+You can see swagger documentation at
+`http://localhost:8080/api/v1/swagger-ui/index.html`
