@@ -1,9 +1,13 @@
 package com.uneev.task_management_system.dto;
 
+import com.uneev.task_management_system.enums.Priority;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
 
+/**
+ * Dto class for editing existing task.
+ */
 @Data
 public class TaskEditingDto {
 
@@ -16,4 +20,7 @@ public class TaskEditingDto {
 
     @Schema(description = "Task description", example = "This is new task description")
     private String description;
+
+    @Schema(description = "Task priority", example = "LOW")
+    private Priority priority;
 }

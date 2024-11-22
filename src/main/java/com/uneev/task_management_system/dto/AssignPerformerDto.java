@@ -5,6 +5,9 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
+/**
+ * Dto class for assigning performer for the task.
+ */
 @Data
 public class AssignPerformerDto {
 

@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * Dto class for responding comment.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-
+/**
+ * Global handler for exceptions related to validation.
+ */
 @RestControllerAdvice
 public class ValidationGlobalExceptionHandler {
 

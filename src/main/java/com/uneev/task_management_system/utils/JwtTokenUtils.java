@@ -1,6 +1,5 @@
 package com.uneev.task_management_system.utils;
 
-import com.uneev.testtaskem.exception.InvalidRequestHeaderException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.time.Duration;
 import java.util.Date;
@@ -16,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Util class for working with JWT tokens.
+ */
 @Component
 public class JwtTokenUtils {
 
@@ -25,6 +26,11 @@ public class JwtTokenUtils {
     @Value("${jwt.lifetime}")
     private Duration lifetime;
 
+    /**
+     * Generating token.
+     * @param userDetails user.
+     * @return generated token.
+     */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         List<String> roles = userDetails.getAuthorities().stream()
@@ -44,10 +50,20 @@ public class JwtTokenUtils {
                 .compact();
     }
 
+    /**
+     * Extraction username from JWT token.
+     * @param token jwt token.
+     * @return username.
+     */
     public String getUsernameFromToken(String token) {
         return getAllClaimsFromToken(token).getSubject();
     }
 
+    /**
+     * Extracting roles from token.
+     * @param token jwt token.
+     * @return list of roles.
+     */
     public List<String> getRolesFromToken(String token) {
         List<?> roles = getAllClaimsFromToken(token).get("roles", List.class);
         return (List<String>) roles;

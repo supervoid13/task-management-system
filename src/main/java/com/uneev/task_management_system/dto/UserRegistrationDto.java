@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Dto class for user registration.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,8 +26,10 @@ public class UserRegistrationDto {
     private String password;
 
     @Schema(description = "User first name", example = "Linus")
+    @NotNull
     private String firstName;
 
     @Schema(description = "User second name", example = "Torvalds")
+    @NotNull
     private String secondName;
 }

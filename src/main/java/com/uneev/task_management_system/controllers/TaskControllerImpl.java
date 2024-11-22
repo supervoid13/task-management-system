@@ -1,15 +1,27 @@
 package com.uneev.task_management_system.controllers;
 
-import com.uneev.task_management_system.dto.*;
+import com.uneev.task_management_system.dto.AssignPerformerDto;
+import com.uneev.task_management_system.dto.ChangeStatusDto;
+import com.uneev.task_management_system.dto.CommentCreationDto;
+import com.uneev.task_management_system.dto.ResponseInfoDto;
+import com.uneev.task_management_system.dto.TaskCreationDto;
+import com.uneev.task_management_system.dto.TaskEditingDto;
+import com.uneev.task_management_system.dto.TaskResponseDto;
 import com.uneev.task_management_system.services.TaskService;
 import com.uneev.task_management_system.utils.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
+/**
+ * Controller for the task management.
+ */
 @RestController
 @RequiredArgsConstructor
 public class TaskControllerImpl implements TaskController {
@@ -19,13 +31,13 @@ public class TaskControllerImpl implements TaskController {
 
 
     @Override
-    public List<TaskResponseDto> getTasksByCreatorIdOrPerformerId(
+    public Page<TaskResponseDto> getTasksByCreatorIdOrPerformerId(
             @RequestParam(required = false) Long creatorId,
             @RequestParam(required = false) Long performerId,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size
     ) {
-        return taskService.getTaskResponseDtoListOnPageByCreatorIdAndPerformerId(
+        return taskService.getTasksOnPageByCreatorIdAndPerformerId(
                 creatorId,
                 performerId,
                 page,
@@ -43,9 +55,7 @@ public class TaskControllerImpl implements TaskController {
             @PathVariable Long id,
             @RequestHeader("Authorization") String jwt
     ) {
-        String email = jwtTokenUtils.getUsernameFromToken(jwt.substring(7));
-
-        taskService.deleteById(id, email);
+        taskService.deleteById(id);
 
         return ResponseEntity.ok(
                 new ResponseInfoDto(
@@ -108,9 +118,7 @@ public class TaskControllerImpl implements TaskController {
             @RequestBody TaskEditingDto taskEditingDto,
             @RequestHeader("Authorization") String jwt
     ) {
-        String email = jwtTokenUtils.getUsernameFromToken(jwt.substring(7));
-
-        taskService.editTask(taskEditingDto, email);
+        taskService.editTask(taskEditingDto);
 
         return ResponseEntity.ok(new ResponseInfoDto(
                 HttpStatus.OK.value(),

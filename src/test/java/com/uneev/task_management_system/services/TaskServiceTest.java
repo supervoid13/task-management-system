@@ -6,6 +6,7 @@ import com.uneev.task_management_system.dto.UserInfoDto;
 import com.uneev.task_management_system.entities.Comment;
 import com.uneev.task_management_system.entities.Task;
 import com.uneev.task_management_system.entities.User;
+import com.uneev.task_management_system.enums.Priority;
 import com.uneev.task_management_system.enums.Status;
 import com.uneev.task_management_system.repositories.TaskRepository;
 import org.junit.jupiter.api.Assertions;
@@ -87,6 +88,7 @@ public class TaskServiceTest {
                 "Task 1 title",
                 "Task 1 description",
                 Status.PROCESSING,
+                Priority.HIGH,
                 creator,
                 performer,
                 comments
@@ -115,17 +117,17 @@ public class TaskServiceTest {
                 ))
                 .thenReturn(Page.empty());
 
-        List<TaskResponseDto> allTasks = taskService
-                .getTaskResponseDtoListOnPageByCreatorIdAndPerformerId(null, null, page, size);
+        Page<TaskResponseDto> allTasks = taskService
+                .getTasksOnPageByCreatorIdAndPerformerId(null, null, page, size);
 
-        List<TaskResponseDto> tasksByCreatorId = taskService
-                .getTaskResponseDtoListOnPageByCreatorIdAndPerformerId(creatorId, null, page, size);
+        Page<TaskResponseDto> tasksByCreatorId = taskService
+                .getTasksOnPageByCreatorIdAndPerformerId(creatorId, null, page, size);
 
-        List<TaskResponseDto> tasksByPerformerId = taskService
-                .getTaskResponseDtoListOnPageByCreatorIdAndPerformerId(null, performerId, page, size);
+        Page<TaskResponseDto> tasksByPerformerId = taskService
+                .getTasksOnPageByCreatorIdAndPerformerId(null, performerId, page, size);
 
-        List<TaskResponseDto> tasksByCreatorIdAndPerformerId = taskService
-                .getTaskResponseDtoListOnPageByCreatorIdAndPerformerId(creatorId, performerId, page, size);
+        Page<TaskResponseDto> tasksByCreatorIdAndPerformerId = taskService
+                .getTasksOnPageByCreatorIdAndPerformerId(creatorId, performerId, page, size);
 
         Assertions.assertTrue(allTasks.isEmpty());
         Assertions.assertTrue(tasksByCreatorId.isEmpty());
@@ -142,6 +144,7 @@ public class TaskServiceTest {
                 "Task 1 title",
                 "Task 1 description",
                 Status.PROCESSING,
+                Priority.HIGH,
                 new UserInfoDto(
                         "creator@gmail.com",
                         "Creator first name",

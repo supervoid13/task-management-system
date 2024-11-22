@@ -2,6 +2,7 @@ package com.uneev.task_management_system.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uneev.task_management_system.dto.TaskCreationDto;
+import com.uneev.task_management_system.enums.Priority;
 import com.uneev.task_management_system.services.TaskService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,6 +41,7 @@ public class TaskControllerTest {
         TaskCreationDto taskCreationDto = new TaskCreationDto(
                 "Title",
                 "Description",
+                Priority.HIGH,
                 "someinvalid@m@a@i@l@.r@.@u."
         );
         String taskJson = objectMapper.writeValueAsString(taskCreationDto);

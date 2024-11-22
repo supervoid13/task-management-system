@@ -5,6 +5,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Dto class for responding jwt token.
+ */
 @Data
 @AllArgsConstructor
 public class JwtResponseDto {

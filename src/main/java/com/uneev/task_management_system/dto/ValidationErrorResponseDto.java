@@ -5,6 +5,9 @@ import lombok.Data;
 
 import java.util.List;
 
+/**
+ * Dto class for responding about validation exceptions.
+ */
 @Data
 @AllArgsConstructor
 public class ValidationErrorResponseDto {

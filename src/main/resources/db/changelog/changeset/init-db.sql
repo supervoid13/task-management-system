@@ -26,11 +26,18 @@ create type status as enum (
   'COMPLETED'
 );
 
+create type priority as enum (
+  'LOW',
+  'MEDIUM',
+  'HIGH'
+);
+
 create table tasks (
     id bigserial primary key,
     title varchar(50) not null,
     description text not null,
     current_status status not null,
+    current_priority priority not null,
     creator_id bigint not null references users(id),
     performer_id bigint references users(id)
 );

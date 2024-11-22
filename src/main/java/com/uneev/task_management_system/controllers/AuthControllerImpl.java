@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Class for managing user login and registration.
+ */
 @RestController
 @RequiredArgsConstructor
 public class AuthControllerImpl implements AuthController {

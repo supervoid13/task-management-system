@@ -18,6 +18,9 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service for actions related to users and their details.
+ */
 @Service
 @RequiredArgsConstructor
 @Validated
@@ -29,12 +32,22 @@ public class UserService implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
 
+    /**
+     * Retrieving user by email.
+     * @param email user email.
+     * @return user with specified email.
+     */
     public User getByEmail(String email) {
         return checkUserExist(email).orElseThrow(
                 () -> new UsernameNotFoundException(String.format("User '%s' not found", email))
         );
     }
 
+    /**
+     * Method for retrieving possibly existing user.
+     * @param email user email.
+     * @return {@link Optional} of user.
+     */
     public Optional<User> checkUserExist(String email) {
         return userRepository.findByEmail(email);
     }
@@ -53,6 +66,10 @@ public class UserService implements UserDetailsService {
         );
     }
 
+    /**
+     * Creating new user.
+     * @param userRegistrationDto new user data.
+     */
     @Transactional
     public void createUser(@Valid UserRegistrationDto userRegistrationDto) {
         User user = modelMapper.map(userRegistrationDto, User.class);

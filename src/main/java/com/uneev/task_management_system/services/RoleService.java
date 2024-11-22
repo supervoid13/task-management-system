@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * Service for the actions related to roles.
+ */
 @Service
 @RequiredArgsConstructor
 public class RoleService {

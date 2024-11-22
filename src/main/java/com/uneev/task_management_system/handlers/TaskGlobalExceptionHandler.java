@@ -10,8 +10,9 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.io.EOFException;
-
+/**
+ * Global handler for exceptions related to task management.
+ */
 @RestControllerAdvice
 public class TaskGlobalExceptionHandler {
 
@@ -50,10 +51,7 @@ public class TaskGlobalExceptionHandler {
             HttpMessageNotReadableException exception
     ) {
         return new ResponseEntity<>(
-                new ResponseInfoDto(
-                        HttpStatus.BAD_REQUEST.value(),
-                        "Status must match: 'CREATED', 'PROCESSING', 'COMPLETED'"
-                ),
+                new ResponseInfoDto(HttpStatus.BAD_REQUEST.value(), exception.getMessage()),
                 HttpStatus.BAD_REQUEST
         );
     }

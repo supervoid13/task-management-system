@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Dto class for user login.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Tag(name = "Authentication")
 public interface AuthController {
 
+    /**
+     * Endpoint for login.
+     * @param userLoginDto user data.
+     * @return JWT token if login is successful.
+     */
     @Operation(
             summary = "Log in",
             description = "Endpoint for login. Returns JWT token if login is successful.",
@@ -35,6 +40,11 @@ public interface AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtResponseDto> login(@RequestBody @Valid UserLoginDto userLoginDto);
 
+    /**
+     * Endpoint for registration.
+     * @param userRegistrationDto new user data.
+     * @return JWT token if registration is successful.
+     */
     @Operation(
             summary = "Sign up",
             description = "Endpoint for registration. Returns JWT token if registration is successful.",

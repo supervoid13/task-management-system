@@ -4,6 +4,9 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * Dto class for responding info from server.
+ */
 @Data
 public class ResponseInfoDto {
     private int status;

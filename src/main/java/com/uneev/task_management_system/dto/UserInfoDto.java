@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Dto class for user required representation.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
